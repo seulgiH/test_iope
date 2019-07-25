@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>매장찾기 | IOPE</title>
+    <!-- 구글웹폰트 -->
+    <link href="https://fonts.googleapis.com/css?family=Nanum+Gothic|Open+Sans&display=swap" rel="stylesheet">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/bxslider/4.2.12/jquery.bxslider.min.js"></script>
+    <link rel="stylesheet" href="./css/bxslider.css">
+    <link rel="stylesheet" href="./css/style.css">
+    <link rel="shortcut icon" href="./images/favicon.ico" />
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+</head>
+
+<body>
+
+    <header>
+        <div class="container">
+            <div class="logo">
+                <a href="./index.html"><img src="./images/logo.png" alt="logo"></a>
+                <ul>
+                    <li><a href="#"><img src="./images/icon_user.png" alt="icon_user"></a></li>
+                    <li><a href="http://seulgi0824.dothome.co.kr/iope/s2_index.html"><img src="./images/icon_map.png" alt="icon_map"></a></li>
+                    <li><a href="#"><img src="./images/icon_search.png" alt="icon_search"></a></li>
+                </ul>
+            </div>
+
+            <nav>
+                <ul class="menu">
+                    <li><a href="#">추천제품</a></li>
+                    <li><a href="http://seulgi0824.dothome.co.kr/iope/s_index.html">제품</a></li>
+                    <li><a href="#">아이오페랩</a></li>
+                    <li><a href="#">이벤트</a></li>
+                    <li><a href="http://seulgi0824.dothome.co.kr/iope/s2_index.html">매장찾기</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <section class="s_tcon">
+        <div class="container2">
+            <h1>아이오페</h1>
+            <small class="s1">서울특별시 송파구 올림픽로 269, 롯데캐슬골드</small>
+            <small class="s2"><strong>TEL</strong> 02-737-7760</small>
+            <div class="m_container">
+                <div id="map" style="width:1000px;height:460px;"></div>
+                <script type="text/javascript"
+                    src="//dapi.kakao.com/v2/maps/sdk.js?appkey=aba53176bfadccb61d17b9bc87df0799"></script>
+                <script>
+                    var mapContainer = document.getElementById('map'), // 지도를 표시할 div 
+                        mapOption = {
+                            center: new kakao.maps.LatLng(37.514545, 127.100614), // 지도의 중심좌표
+                            level: 3 // 지도의 확대 레벨
+                        };
+
+                    var map = new kakao.maps.Map(mapContainer, mapOption); // 지도를 생성합니다
+
+                    // 마커가 표시될 위치입니다 
+                    var markerPosition = new kakao.maps.LatLng(37.514545, 127.100614);
+
+                    // 마커를 생성합니다
+                    var marker = new kakao.maps.Marker({
+                        position: markerPosition
+                    });
+
+                    // 마커가 지도 위에 표시되도록 설정합니다
+                    marker.setMap(map);
+
+                    // 아래 코드는 지도 위의 마커를 제거하는 코드입니다
+                    // marker.setMap(null);    
+                </script>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <a href="#" id="MOVE_TOP_BTN">
+            <img src="./images/icon_top.png" alt="top">
+        </a>
+        <div class="container">
+            <ul>
+                <li><a href="#">서비스이용약관</a></li>
+                <li><a href="#">개인정보처리방침</a></li>
+                <li><a href="#">영상정보처리방침</a></li>
+                <li><a href="#">사이트맵</a></li>
+                <li><a href="#">관련사이트</a></li>
+                <li><a href="#">공지사항</a></li>
+            </ul>
+            <p>고객서비스센터(수신자요금 부담) 080-023-5454(월~금, 09:00~18:00)</p>
+            <p>&copy; AMOREPACIFIC CORPORATION. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script>
+        $(document).ready(function () {
+            var mySlider = $('.slider').bxSlider({
+                speed: 500, // 이동 속도를 설정
+                auto: true, // 자동 실행 여부
+                autoHover: true, // 마우스 호버시 정지 여부
+                controls: false // 이전 다음 버튼 노출 여부
+            });
+            var mySlider2 = $('.slider2').bxSlider({
+                pager: false, //하단 불릿           
+                speed: 800, // 이동 속도를 설정
+                auto: true, // 자동 실행 여부
+                autoHover: true, // 마우스 호버시 정지 여부
+                controls: false // 이전 다음 버튼 노출 여부
+            });
+        });
+
+
+        // 탑버튼 소스
+        $(document).ready(function () {
+            var jbOffset = $('.menu').offset();
+            $(window).scroll(function () {
+                if ($(document).scrollTop() > jbOffset.top) {
+                    $('.menu').addClass('.logo');
+                } else {
+                    $('.menu').removeClass('.logo');
+                }
+            });
+        });
+        $(function () {
+            $(window).scroll(function () {
+                if ($(this).scrollTop() > 500) {
+                    $('#MOVE_TOP_BTN').fadeIn();
+                } else {
+                    $('#MOVE_TOP_BTN').fadeOut();
+                }
+            });
+
+            $("#MOVE_TOP_BTN").click(function () {
+                $('html, body').animate({
+                    scrollTop: 0
+                }, 400);
+                return false;
+            });
+        });
+    </script>
+
+</body>
+
+</html>
